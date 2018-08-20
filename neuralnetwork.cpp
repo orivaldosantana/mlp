@@ -969,7 +969,7 @@ class NeuralNetwork
                erroIncrease++;
             else 
                erroIncrease = 0;
-            if ( erroIncrease > 5 )
+            if ( erroIncrease > 10 )
                stop = true;
  //            cout << "erro trainamento  " << sseTraining << endl ;
  //            cout << "erro validacao  " << sseValidation << endl ;
@@ -1155,25 +1155,28 @@ void printVector(vector<double> *v)
 
 void testAMExercise()
 {
-//    cout << "Rede Neural - exercicio" << endl;
-//    NeuralNetwork rede;
-//    rede.loadNeuralNetwork("../../src/data/exercicioAM.rede");
-//    rede.print();
-//
-//    vector<double> input;
-//    input.push_back(2.5);
-//
-//    vector<double> desired;
-//    desired.push_back(0.18);
-//
-//    for ( int i = 0; i < 2000 ; i++ )
-//    {
-//       rede.calculateOutput ( input );
-//  //     rede.printOutput();
-// //   rede.print();
-//       rede.updateWeights ( desired );
-//       cout <<" Erro: "  <<rede.getOutput()[0] - 0.18 << endl;
-//    }
+    cout << "Rede Neural - exercicio" << endl;
+    NeuralNetwork rede;
+    rede.loadNeuralNetwork("./data/exercicioAM.rede");
+    rede.print();
+
+    vector<double> *input = new vector<double>;
+    input->push_back(2.5);
+
+    vector<double> *desired =  new vector<double>;
+    desired->push_back(0.18);
+
+    vector<double> *output; 
+
+    for ( int i = 0; i < 200 ; i++ )
+    {
+       
+  //     rede.printOutput();
+       rede.print();
+       output = rede.calculateOutput ( input );
+       rede.updateWeights ( desired, input );
+       cout <<" Erro: "  <<(*output)[0] - 0.18 << endl;
+    }
 }
 
 void simpleTest()
@@ -1300,57 +1303,22 @@ void testDribble()
 int main(int argc, char *argv[])
 {
 
-   //testAMExercise();
+   testAMExercise();
   // simpleTest();
-  //  testDribble();
-   testXOR2();
+  // testDribble();
+  // testXOR2();
   // testXOR();
- //  tesetCancer();
+  // tesetCancer();
 
- //  Perceptron p;
- //  p.train();
+  // Perceptron p;
+  // p.train();
 
 
-
-/*
-    DataBase xbd("../../src/data/xor2.dat");
-    xbd.saveToFile("../../src/data/xor_4.dat",false,false);*/
-
-/*
-   DataBase dribleDataBase("../../src/data/dribleNovo.dat");
- //  dribleDataBase.show();
-   dribleDataBase.saveToFile("../../src/data/drible4.dat",false,true);
-*/
 
 
   return EXIT_SUCCESS;
 }
 
-/*
-    for ( int i = 0; i < 800 ; i++ )
-    {
-       for (int i=0; i < xorDataBase.getSize(); i++)
-       {
-          sample = xorDataBase.getInputRandomSample(i);
-          desired = xorDataBase.getOutputRandomSample(i);
-          output = rede.calculateOutput ( sample );
- //         rede.getThresholdOutput( output );
-          rede.updateWeights ( desired, sample );
-   //       cout <<" Erro: "  << (*desired)[0] - (*output)[0];
-       }
-  //     cout << endl;
-       xorDataBase.randomize();
- //      rede.simplePrint();
-    }
-    for (int i=0; i < xorDataBase.getSize(); i++)
-    {
-       sample = xorDataBase.getInputRandomSample(i);
-       desired = xorDataBase.getOutputRandomSample(i);
-       output = rede.calculateOutput ( sample );
-      // rede.getThresholdOutput( output );
- //       rede.updateWeights ( desired );
-       cout <<" Erro: "  << (*desired)[0] - (*output)[0];
-    }*/
 
 
 /* Codigos para teste
@@ -1416,3 +1384,53 @@ int main(int argc, char *argv[])
 //   rede.training("data/cancer_validation.txt","data/cancer_training.txt");
 
 */
+
+
+
+
+
+
+///////////////////////////////
+
+
+/*
+    DataBase xbd("../../src/data/xor2.dat");
+    xbd.saveToFile("../../src/data/xor_4.dat",false,false);*/
+
+/*
+   DataBase dribleDataBase("../../src/data/dribleNovo.dat");
+ //  dribleDataBase.show();
+   dribleDataBase.saveToFile("../../src/data/drible4.dat",false,true);
+*/
+
+
+////////////////////////////////
+
+
+/*
+    for ( int i = 0; i < 800 ; i++ )
+    {
+       for (int i=0; i < xorDataBase.getSize(); i++)
+       {
+          sample = xorDataBase.getInputRandomSample(i);
+          desired = xorDataBase.getOutputRandomSample(i);
+          output = rede.calculateOutput ( sample );
+ //         rede.getThresholdOutput( output );
+          rede.updateWeights ( desired, sample );
+   //       cout <<" Erro: "  << (*desired)[0] - (*output)[0];
+       }
+  //     cout << endl;
+       xorDataBase.randomize();
+ //      rede.simplePrint();
+    }
+    for (int i=0; i < xorDataBase.getSize(); i++)
+    {
+       sample = xorDataBase.getInputRandomSample(i);
+       desired = xorDataBase.getOutputRandomSample(i);
+       output = rede.calculateOutput ( sample );
+      // rede.getThresholdOutput( output );
+ //       rede.updateWeights ( desired );
+       cout <<" Erro: "  << (*desired)[0] - (*output)[0];
+    }*/
+
+

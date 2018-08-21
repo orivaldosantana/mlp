@@ -1303,10 +1303,10 @@ void testDribble()
 int main(int argc, char *argv[])
 {
 
-   testAMExercise();
+  // testAMExercise();
   // simpleTest();
   // testDribble();
-  // testXOR2();
+   testXOR2();
   // testXOR();
   // tesetCancer();
 
